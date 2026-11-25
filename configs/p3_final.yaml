@@ -1,0 +1,9 @@
+# Phase 3 — combination of the changes ADOPTED for the GRU line (each tested alone in results/improve/ledger.csv):
+#   peak normalisation (P2-5) + 45-min input window (P2-8) + input-noise augmentation (I-3) + rise-time
+#   feature (I-4); evaluated with 5 seeds so that the 5-seed ensemble (I-5) can be formed.
+exp_id: p3_final
+seeds: [0, 1, 2, 3, 4]
+specs:
+  - {name: GRU-final, type: dl, configs: [gru], target: peaknorm, in_window: 45, augment: {noise: 0.01}, extra: [rise_min_10pct]}
+  # FCN line winner (P2-5 z-score; I-5 ensemble) — re-tuned by scripts/tune_optuna.py --family fcn (I-10)
+  - {name: FCN-z, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], standardize: true, seeds: []}

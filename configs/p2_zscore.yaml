@@ -1,0 +1,10 @@
+# Phase 2 item 5 (cont.) — global z-score standardisation (training-fold statistics) of the log10
+# input (scalar) and of each log10 target band, with otherwise unchanged paper hyper-parameters
+exp_id: p2_zscore
+seeds: [0, 1, 2]
+specs:
+  - {name: FCN-z,         type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], standardize: true}
+  - {name: GRU-z,         type: dl, configs: [gru], standardize: true}
+  - {name: LSTM-z,        type: dl, configs: [lstm], standardize: true}
+  - {name: RNN-z,         type: dl, configs: [rnn], standardize: true}
+  - {name: Transformer-z, type: dl, configs: [transformer], standardize: true}

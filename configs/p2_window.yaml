@@ -1,0 +1,11 @@
+# Phase 2 item 8 — input-window sensitivity (only <= 60 min exist in the Zenodo arrays; 90/120 impossible).
+# Uses the peak-normalised FCN/GRU (the paper-preprocessing GRU collapses to a mean curve in CV96).
+exp_id: p2_window
+seeds: [0, 1, 2]
+specs:
+  - {name: FCN-pn-w15, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], overrides: {anchor: false}, target: peaknorm, in_window: 15}
+  - {name: FCN-pn-w30, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], overrides: {anchor: false}, target: peaknorm, in_window: 30}
+  - {name: FCN-pn-w45, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], overrides: {anchor: false}, target: peaknorm, in_window: 45}
+  - {name: GRU-pn-w15, type: dl, configs: [gru], target: peaknorm, in_window: 15}
+  - {name: GRU-pn-w30, type: dl, configs: [gru], target: peaknorm, in_window: 30}
+  - {name: GRU-pn-w45, type: dl, configs: [gru], target: peaknorm, in_window: 45}

@@ -1,0 +1,9 @@
+# downloader / calibration / build (in addition to the main requirements.txt)
+requests>=2.28
+urllib3>=1.26
+netCDF4>=1.6
+numpy>=1.23
+pandas>=1.5
+tabulate>=0.9
+matplotlib>=3.6
+pytest>=7

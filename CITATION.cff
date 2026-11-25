@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, together with the paper and Kim et al. (2026)."
+title: "OPIF: Operational Post-peak Irradiance Forecaster for solar flares (code)"
+authors:
+  - family-names: Jeon
+    given-names: Hyeonsoo
+    affiliation: "Department of Electrical and Computer Engineering, Inha University, Incheon, Republic of Korea"
+  - family-names: Jung
+    given-names: Jinman
+    affiliation: "Department of Computer Engineering, Inha University, Incheon, Republic of Korea"
+version: "1.0.0"
+date-released: "2026-11-25"
+license: MIT
+repository-code: "https://github.com/hyeonsoo-j/OPIF"
+keywords:
+  - solar flares
+  - space weather
+  - FISM2
+  - GOES XRS
+  - irradiance forecasting
+  - conformal prediction
+references:
+  - type: article
+    title: "Benchmarking deep learning models for real-time prediction of post-peak solar flare irradiance using FISM2 data"
+    authors:
+      - family-names: Kim
+        given-names: Jeong-Heon
+    journal: "Space Weather"
+    year: 2026
+    doi: "10.1029/2026SW005183"

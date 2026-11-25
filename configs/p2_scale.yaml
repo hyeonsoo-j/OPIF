@@ -1,0 +1,9 @@
+# Phase 2 item 5 — scale invariance: predictions for inputs multiplied by 0.1 and 10.
+# A purely scale-equivariant model would shift every band's log10 output by exactly log10(f).
+exp_id: p2_scale
+seeds: [0]
+specs:
+  - {name: FCN, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], scale_test: [0.1, 10]}
+  - {name: GRU, type: dl, configs: [gru], scale_test: [0.1, 10]}
+  - {name: FCN-peaknorm, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], overrides: {anchor: false}, target: peaknorm, scale_test: [0.1, 10]}
+  - {name: GRU-peaknorm, type: dl, configs: [gru], target: peaknorm, scale_test: [0.1, 10]}

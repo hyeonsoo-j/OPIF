@@ -1,0 +1,24 @@
+# data and outputs are not tracked (see data/README.md)
+data/*
+!data/README.md
+results/*
+!results/README.md
+figures/
+logs/*
+!logs/.gitkeep
+external/zenodo/*
+!external/zenodo/README.md
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+# LaTeX by-products
+paper/*.aux
+paper/*.log
+paper/*.pdf
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,16 @@
+# Phase 1 — proxy reproduction on the 96 Zenodo test events (nested CV96, see docs/decisions.md)
+exp_id: repro_cv96
+seeds: [0, 1, 2]
+workers: 2
+specs:
+  - {name: Power-law,   type: baseline, baseline: powerlaw}
+  - {name: LinearReg,   type: baseline, baseline: linreg}
+  - {name: RandomForest, type: baseline, baseline: rf}
+  - {name: Persistence-linextrap, type: baseline, baseline: persistence_linextrap}
+  - {name: Persistence-peak, type: baseline, baseline: persistence_peak}
+  - {name: Climatology, type: baseline, baseline: climatology}
+  - {name: FCN,         type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3]}
+  - {name: RNN,         type: dl, configs: [rnn]}
+  - {name: LSTM,        type: dl, configs: [lstm]}
+  - {name: GRU,         type: dl, configs: [gru]}
+  - {name: Transformer, type: dl, configs: [transformer]}

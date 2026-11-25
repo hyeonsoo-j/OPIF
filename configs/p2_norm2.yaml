@@ -1,0 +1,7 @@
+# Phase 2 item 5 (cont.) — event peak normalisation for the remaining paper DL models
+exp_id: p2_norm2
+seeds: [0, 1, 2]
+specs:
+  - {name: LSTM-peaknorm,        type: dl, configs: [lstm], target: peaknorm}
+  - {name: RNN-peaknorm,         type: dl, configs: [rnn], target: peaknorm}
+  - {name: Transformer-peaknorm, type: dl, configs: [transformer], target: peaknorm}

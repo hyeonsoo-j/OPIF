@@ -1,0 +1,11 @@
+# Paper-1 P3 — forecasts issued k minutes AFTER the peak (peak detection latency); inputs = last 60 min up to peak+k
+exp_id: paper1_delay
+seeds: [0, 1, 2]
+specs:
+  - {name: GRU-z-d2,  type: dl, configs: [gru], standardize: true, issue_delay: 2}
+  - {name: GRU-z-d5,  type: dl, configs: [gru], standardize: true, issue_delay: 5}
+  - {name: GRU-z-d10, type: dl, configs: [gru], standardize: true, issue_delay: 10}
+  - {name: FCN-z-d2,  type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], standardize: true, issue_delay: 2}
+  - {name: FCN-z-d5,  type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], standardize: true, issue_delay: 5}
+  - {name: FCN-z-d10, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], standardize: true, issue_delay: 10}
+  - {name: GRU-pn-d5, type: dl, configs: [gru], target: peaknorm, issue_delay: 5}

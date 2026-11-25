@@ -1,0 +1,9 @@
+# Phase 2 item 5 (cont.) — hybrid normalisation: w0 relative to the input peak (scales with the
+# X-ray input), EUV bands absolute; all targets z-scored per band (training fold), input = shape
+# relative to the peak (z-scored) + standardised peak level.
+exp_id: p2_hybrid
+seeds: [0, 1, 2]
+specs:
+  - {name: FCN-hyb,         type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], overrides: {anchor: false}, target: peaknorm, pn_bands: [0], standardize: true}
+  - {name: GRU-hyb,         type: dl, configs: [gru], target: peaknorm, pn_bands: [0], standardize: true}
+  - {name: Transformer-hyb, type: dl, configs: [transformer], target: peaknorm, pn_bands: [0], standardize: true}

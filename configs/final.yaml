@@ -1,0 +1,13 @@
+# rows of results/final/compare.csv (scripts/final_compare.py)
+zenodo: [GRU, FCN, RandomForest, Transformer]
+ours:
+  - {exp: repro_cv96, name: Power-law,         label: "Power-law (paper construction)"}
+  - {exp: repro_cv96, name: RandomForest,      label: "RF (paper config)"}
+  - {exp: repro_cv96, name: GRU,               label: "GRU (paper config)"}
+  - {exp: repro_cv96, name: FCN,               label: "FCN (paper config)"}
+  - {exp: p2_norm,    name: GRU-peaknorm,      label: "GRU-peaknorm"}
+  - {exp: p2_zscore,  name: FCN-z,             label: "FCN-z"}
+  - {exp: p3_optuna,  name: FCN-z-optuna,      label: "FCN-z Optuna (I-10)"}
+  - {exp: p3_ensemble, name: FCN-z-ens5,       label: "FCN-z ens5 (final)"}
+  - {exp: p3_final,   name: GRU-final,         label: "GRU-final (single)"}
+  - {exp: p3_final,   name: GRU-final-ens5,    label: "GRU-final ens5"}

@@ -1,0 +1,9 @@
+# Phase 2 item 7 — leakage sensitivity: contiguous-in-time folds instead of interleaved folds
+exp_id: p2_blocked
+fold_scheme: blocked
+seeds: [0, 1, 2]
+specs:
+  - {name: Power-law,    type: baseline, baseline: powerlaw}
+  - {name: RandomForest, type: baseline, baseline: rf}
+  - {name: FCN-peaknorm, type: dl, configs: [fcn_w0, fcn_w1, fcn_w2, fcn_w3], overrides: {anchor: false}, target: peaknorm}
+  - {name: GRU-peaknorm, type: dl, configs: [gru], target: peaknorm}

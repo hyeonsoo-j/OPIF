@@ -1,0 +1,58 @@
+% Figure 1 of the paper: operational forecasting pipeline (standalone TikZ), set in Times New Roman (fontspec).
+% Compile with XeLaTeX: xelatex fig01_pipeline.tex
+% Needs Times New Roman installed (Windows: present). No math fonts: symbols are Unicode characters of Times New Roman.
+% Colour concept (docs/figure_style.md, notebooks/sf_colors.py): grey = data, green = WHAT we forecast
+% (converter, ensemble, interval, products), orange = WHEN we issue and stop (detector, two-stage issue, validity).
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc}
+\definecolor{sfRule}{HTML}{C8621A}
+\definecolor{sfOurs}{HTML}{34604A}
+\definecolor{sfDark}{HTML}{404040}
+\definecolor{sfGray}{HTML}{7F7F7F}
+\definecolor{sfLight}{HTML}{EFEFEF}
+\begin{document}
+\begin{tikzpicture}[
+  font=\small,
+  node distance=9mm and 8mm,
+  box/.style={draw=sfGray, fill=sfLight, rounded corners=2pt, align=center,
+              minimum height=17mm, text width=36mm, inner sep=3pt, line width=0.6pt},
+  when/.style={box, draw=sfRule, fill=sfRule!10},
+  what/.style={box, draw=sfOurs, fill=sfOurs!8},
+  outp/.style={box, draw=sfOurs, fill=sfOurs!22, line width=0.9pt},
+  arr/.style={-{Stealth[length=2.2mm]}, line width=0.7pt, draw=sfDark},
+  arrw/.style={arr, draw=sfRule},
+  lab/.style={font=\footnotesize\itshape, text=sfDark, align=center}]
+
+  % row 1: data stream and issue logic
+  \node[box] (goes) {\textbf{GOES XRS-A/B}\\1-min operational stream\\(latency about 1 min)};
+  \node[when, right=of goes] (det) {\textbf{Armed peak detector}\\max ≥ M1, no new max\\for \textit{k} = 2 min, rise ≥ 2×};
+  \node[when, right=of det] (iss) {\textbf{Two-stage issue}\\1: at detection, peak + 2 min\\2: re-issue at peak + 10 min};
+
+  % row 2: forecast chain
+  \node[what, below=of goes] (conv) {\textbf{GOES → FISM2 converter}\\small FCN on the\\60-min XRS-A/B window};
+  \node[what, below=of det] (fc) {\textbf{Forecast ensemble}\\GRU-z or FCN-z\\5 seeds, log\textsubscript{10} space};
+  \node[what, below=of iss] (cp) {\textbf{Split-conformal}\\\textbf{90\,\% interval}\\122 validation flares};
+
+  % outputs
+  \node[outp, right=of iss] (o1) {\textbf{Irradiance forecast}\\0.1--0.8, 9.0--9.9, 13.0--13.9\\and 30.0--30.9 nm\\0--180 min after the peak};
+  \node[outp, right=of cp] (o2) {\textbf{HF absorption}\\10 MHz over Korea (dB)\\with its interval};
+
+  % arrows
+  \draw[arr] (goes) -- (det);
+  \draw[arrw] (det) -- node[lab, above, text=sfRule] {peak\\declared} (iss);
+  \draw[arr] (goes) -- node[lab, left] {input\\window} (conv);
+  \draw[arr] (conv) -- (fc);
+  \draw[arrw] (iss.south west) -- node[lab, right, text=sfRule, pos=0.45] {issue} (fc.north east);
+  \draw[arr] (fc) -- (cp);
+  \draw[arr] (cp) -- (o2);
+  \draw[arr] (cp.north east) -- (o1.south west);
+
+  % validity rule: a forecast is in force until the next declaration, then a new issue
+  \draw[-{Stealth[length=2.2mm]}, line width=0.7pt, draw=sfRule, dashed]
+    (iss.north) .. controls +(0,12mm) and +(0,12mm) .. node[lab, above, text=sfRule]
+    {next maximum declared: forecast superseded, new issue} (det.north);
+\end{tikzpicture}
+\end{document}
